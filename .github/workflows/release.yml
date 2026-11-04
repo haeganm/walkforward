@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Build
@@ -81,7 +81,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Build and test the wheel
-        uses: pypa/cibuildwheel@v2.21.3
+        uses: pypa/cibuildwheel@v4.2.1
       - uses: actions/upload-artifact@v7
         with:
           name: dist-${{ matrix.label }}
@@ -93,12 +93,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: dist-*
           path: dist
           merge-multiple: true
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Metadata and long description must render on PyPI
@@ -133,7 +133,7 @@ jobs:
     permissions:
       id-token: write   # trusted publishing: no token anywhere
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: dist-*
           path: dist
