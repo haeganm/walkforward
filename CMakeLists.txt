@@ -17,8 +17,8 @@ if(MSVC)
     # /fp:contract- forbids fused multiply-add the way -ffp-contract=off does
     set(MLRISK_COMPILE_OPTIONS /W4 /fp:precise /fp:contract- $<$<BOOL:${MLRISK_WERROR}>:/WX>)
 else()
-    # -ffp-contract=off: no fused multiply-add, so results match across
-    # compilers and architectures to the last bit
+    # -ffp-contract=off: no fused multiply-add, so a multiply and an add
+    # always round separately
     set(MLRISK_COMPILE_OPTIONS -Wall -Wextra -Wpedantic -ffp-contract=off
         $<$<BOOL:${MLRISK_WERROR}>:-Werror>)
 endif()

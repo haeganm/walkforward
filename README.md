@@ -16,7 +16,7 @@ Most backtests that look good are quietly peeking one bar ahead. The estimator t
 - **Rolling statistics in O(n)** that stay accurate at index levels (4.4e-16 at a price level of 1e9, where a plain two-pass computation is already off by 4.9e-12), along a trend from 100 to 1e6, and after a bad tick has left the window.
 - **Ridge by Householder QR** on the centered design, so the intercept is unpenalized and accuracy stays at condition number times epsilon where the normal equations would square it.
 
-The C builds as strict ISO C11 under GCC, Clang and MSVC with warnings as errors and no fused multiply-add, so results agree across compilers to the last bit. CI runs the suite on Linux (gcc and clang, 64- and 32-bit), macOS and Windows, under AddressSanitizer and UBSan, installs the library and consumes it through `find_package` and `pkg-config`, compiles the public headers as C++17, builds and tests the Python wheel on three platforms, and compares every function against pandas, numpy, scikit-learn and `arch`.
+The C builds as strict ISO C11 under GCC, Clang and MSVC with warnings as errors and no fused multiply-add. CI runs the suite on Linux (gcc and clang, 64- and 32-bit), macOS and Windows, under AddressSanitizer and UBSan, installs the library and consumes it through `find_package` and `pkg-config`, compiles the public headers as C++17, builds and tests the Python wheel on three platforms, and checks the results against pandas, numpy, scikit-learn and `arch`.
 
 This is research software, not investment advice.
 
